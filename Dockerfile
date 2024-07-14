@@ -125,7 +125,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY sshd_config /etc/ssh
 # import authorized_keys to image allowing login without password
 COPY authorized_keys /root/.ssh/authorized_keys
-# set ssh Password to qaz123
+# set ssh Password to winchellwang
 RUN echo 'root:winchellwang' | chpasswd
 
 EXPOSE 22
