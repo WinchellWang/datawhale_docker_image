@@ -12,6 +12,30 @@ Build the image in the folder with the following command.
 docker build -t datawhale/lightgbm_pytorch_torchtext:12.3 .
 ```
 
+After build the image, creat the container.
+
+```bash
+docker run -itd \
+    -e PUID=1000 -e PGID=1000 \
+    --gpus all \
+    --name=datawhale \
+    --restart=on-failure \
+    -v ~/work_folder/:/home \
+    -p 1234:22 \
+    datawhale/lightgbm_pytorch_torchtext:12.3
+```
+
+Set SSH Config file with following
+```
+Host DataWhale
+    HostName 0.0.0.0 # your docker server IP
+    User root # password is winchellwang
+    Port 1234 # math with the forward port
+    IdentityFile ~\.ssh\id_rsa # id_rsa should match with your key in authorized_keys
+```
+
+Open remote connection in VS Code.
+
 # What it has inside
 
 Built in CONDA environment
