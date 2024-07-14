@@ -30,4 +30,4 @@ LightGBM, Pytorch, and TorchText are already CUDA compatible.
 
 # Requirement
 
-Has Nvidia GPU with CUDA.
+Ubuntu 22.04 has Nvidia GPU with CUDA > 12.3
