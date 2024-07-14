@@ -35,8 +35,8 @@ Set the SSH config file with the following
 Host DataWhale
     HostName 0.0.0.0 # your docker server IP
     User root # password is winchellwang
-    Port 1234 # math with the forward port
-    IdentityFile ~\.ssh\id_rsa # id_rsa should match with your key in authorized_keys
+    Port 1234 # same with the forward port in container deployment
+    IdentityFile ~\.ssh\id_rsa # id_rsa should match your key in authorized_keys.
 ```
 
 Open remote connection in VS Code.
