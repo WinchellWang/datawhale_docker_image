@@ -1,4 +1,4 @@
-Dockfile which includes LightGBM, Pytorch and TorchText with cuda acceleration
+Dockfile containing LightGBM, Pytorch and TorchText with GPU Cuda acceleration
 
 # How to Use
 
