@@ -36,6 +36,7 @@ RUN chmod +x /tini
 
 RUN apt-get update && \
 apt-get install -y --no-install-recommends \
+apt-utils \
 build-essential \
 curl \
 bzip2 \
@@ -45,6 +46,10 @@ libxext6 \
 libsm6 \
 libegl1 \
 libxrender1 \
+libgl1 \
+libgl1-mesa-glx \
+ffmpeg \
+libopengl0 \
 git \
 vim \
 mercurial \
