@@ -22,7 +22,7 @@ docker run -itd \
     --gpus all \
     --name=datawhale \
     --restart=on-failure \
-    -v ~/work_folder/:/home \
+    -v /your/work/folder/:/home \
     -p 1234:22 \
     datawhale/lightgbm_pytorch_torchtext:12.3
 ```
