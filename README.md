@@ -6,7 +6,7 @@ Dockfile containing LightGBM, Pytorch and TorchText with GPU Cuda acceleration
 
 Download all files in one folder.
 
-Add your key information to authorized_keys.
+Add your SSH key information to authorized_keys.
 
 Build the image in the folder with the following command.
 
