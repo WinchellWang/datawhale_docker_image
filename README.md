@@ -9,7 +9,6 @@ Add your key information to authorized_keys.
 Build the image in the folder with the following command.
 
 ```bash
-mv bashrc_content .bashrc
 docker build -t datawhale/lightgbm_pytorch_torchtext:12.3 .
 ```
 
