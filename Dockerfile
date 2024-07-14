@@ -78,8 +78,8 @@ RUN /bin/bash -c "source .bashrc"
 RUN conda config --set always_yes yes --set changeps1 yes && \
     conda create -y -q -n LightGBM numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib && \
     conda create -y -q -n Pytorch pytorch torchvision torchaudio pytorch-cuda=12.1 numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib -c pytorch -c nvidia && \
-    conda create -y -q -n TorchText pytorch torchvision torchaudio pytorch-cuda=12.1 torchtext=0.17 numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib jieba sacrebleu -c pytorch -c nvidia
-
+    conda create -y -q -n TorchText pytorch torchvision torchaudio pytorch-cuda=12.1 torchtext=0.18 numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib jieba sacrebleu -c pytorch -c nvidia
+    
 #################################################################################################################
 #           LightGBM
 #################################################################################################################
@@ -123,7 +123,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 
 COPY sshd_config /etc/ssh
-# import authorized_keys to image allowing login without password
 COPY authorized_keys /root/.ssh/authorized_keys
 # set ssh Password to winchellwang
 RUN echo 'root:winchellwang' | chpasswd
