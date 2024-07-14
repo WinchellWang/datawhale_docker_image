@@ -4,7 +4,7 @@ FROM nvidia/cuda:12.3.2-cudnn9-devel-ubuntu22.04
 #           Global
 #################################################################################################################
 # apt-get to skip any interactive post-install configuration steps with DEBIAN_FRONTEND=noninteractive and apt-get install -y
-COPY .bashrc /root
+COPY bashrc_content /root/.bashrc
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ARG DEBIAN_FRONTEND=noninteractive
 
