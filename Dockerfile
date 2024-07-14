@@ -77,7 +77,7 @@ RUN /bin/bash -c "conda init"
 RUN /bin/bash -c "source .bashrc"
 RUN conda config --set always_yes yes --set changeps1 yes && \
     conda create -y -q -n LightGBM numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib && \
-    conda create -y -q -n Pytorch pytorch torchvision torchaudio pytorch-cuda=12.1 numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib -c pytorch -c nvidia && \
+    conda create -y -q -n Pytorch pytorch torchvision torchaudio pytorch-cuda=12.1 numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib menpo opencv opencv_python_headless -c pytorch -c nvidia && \
     conda create -y -q -n TorchText pytorch torchvision torchaudio pytorch-cuda=12.1 torchtext=0.18 numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib jieba sacrebleu -c pytorch -c nvidia
     
 #################################################################################################################
