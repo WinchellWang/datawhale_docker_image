@@ -2,6 +2,8 @@ Dockfile containing LightGBM, Pytorch and TorchText with GPU Cuda acceleration
 
 # How to Use
 
+## Docker
+
 Download all files in one folder.
 
 Add your key information to authorized_keys.
@@ -25,7 +27,10 @@ docker run -itd \
     datawhale/lightgbm_pytorch_torchtext:12.3
 ```
 
-Set SSH Config file with following
+## Local Computer
+
+Set the SSH config file with the following
+
 ```
 Host DataWhale
     HostName 0.0.0.0 # your docker server IP
