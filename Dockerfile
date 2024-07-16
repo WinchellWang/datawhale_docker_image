@@ -77,12 +77,8 @@ RUN conda config --set always_yes yes --set changeps1 yes && \
     conda create -y -q -n Pytorch python=3.9.19 pytorch torchvision torchaudio pytorch-cuda=12.1 numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib menpo moviepy librosa timm opencv ultralytics -c pytorch -c nvidia && \
     conda create -y -q -n TorchText python=3.9.19 pytorch torchvision torchaudio pytorch-cuda=12.1 torchtext=0.18 numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib jieba sacrebleu spacy cupy -c pytorch -c nvidia -c conda-forge
 
-RUN /bin/bash -c "conda init && conda activate TorchText"
+RUN /bin/bash -c "source activate TorchText && python -m spacy download zh_core_web_sm && python -m spacy download en_core_web_sm && source deactivate"
 
-RUN /bin/bash -c "python -m spacy download zh_core_web_sm && python -m spacy download en_core_web_sm"
-
-RUN /bin/bash -c "conda deactivate"
-    
 #################################################################################################################
 #           LightGBM
 #################################################################################################################
@@ -114,32 +110,6 @@ EXPOSE 22
 ENTRYPOINT service ssh start && bash
 
 WORKDIR /home
-
-#################################################################################################################
-#           TINI
-#################################################################################################################
-
-# Install tini
-# ENV TINI_VERSION v0.14.0
-# ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-# RUN chmod +x /tini
-
-#################################################################################################################
-#           JUPYTER
-#################################################################################################################
-
-# password: keras
-# password key: --NotebookApp.password='sha1:98b767162d34:8da1bc3c75a0f29145769edc977375a373407824'
-
-# Add a notebook profile.
-# RUN mkdir -p -m 700 ~/.jupyter/ && \
-#     echo "c.NotebookApp.ip = '*'" >> ~/.jupyter/jupyter_notebook_config.py
-
-# IPython
-# EXPOSE 8888
-
-# ENTRYPOINT [ "/tini", "--" ]
-# CMD /bin/bash -c "source activate Pytorch && jupyter notebook --allow-root --no-browser --NotebookApp.password='sha1:98b767162d34:8da1bc3c75a0f29145769edc977375a373407824' && source deactivate"
 
 #################################################################################################################
 #           System CleanUp
