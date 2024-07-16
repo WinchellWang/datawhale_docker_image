@@ -20,15 +20,6 @@ ENV OPENCL_LIBRARIES /usr/local/cuda/lib64
 ENV OPENCL_INCLUDE_DIR /usr/local/cuda/include
 
 #################################################################################################################
-#           TINI
-#################################################################################################################
-
-# Install tini
-ENV TINI_VERSION v0.14.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-RUN chmod +x /tini
-
-#################################################################################################################
 #           SYSTEM
 #################################################################################################################
 # update: downloads the package lists from the repositories and "updates" them to get information on the newest versions of packages and their
@@ -122,6 +113,15 @@ ENTRYPOINT service ssh start && bash
 WORKDIR /home
 
 #################################################################################################################
+#           TINI
+#################################################################################################################
+
+# Install tini
+# ENV TINI_VERSION v0.14.0
+# ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+# RUN chmod +x /tini
+
+#################################################################################################################
 #           JUPYTER
 #################################################################################################################
 
@@ -129,14 +129,14 @@ WORKDIR /home
 # password key: --NotebookApp.password='sha1:98b767162d34:8da1bc3c75a0f29145769edc977375a373407824'
 
 # Add a notebook profile.
-RUN mkdir -p -m 700 ~/.jupyter/ && \
-    echo "c.NotebookApp.ip = '*'" >> ~/.jupyter/jupyter_notebook_config.py
+# RUN mkdir -p -m 700 ~/.jupyter/ && \
+#     echo "c.NotebookApp.ip = '*'" >> ~/.jupyter/jupyter_notebook_config.py
 
 # IPython
-EXPOSE 8888
+# EXPOSE 8888
 
-ENTRYPOINT [ "/tini", "--" ]
-CMD /bin/bash -c "source activate base && jupyter notebook --allow-root --no-browser --NotebookApp.password='sha1:98b767162d34:8da1bc3c75a0f29145769edc977375a373407824' && source deactivate"
+# ENTRYPOINT [ "/tini", "--" ]
+# CMD /bin/bash -c "source activate Pytorch && jupyter notebook --allow-root --no-browser --NotebookApp.password='sha1:98b767162d34:8da1bc3c75a0f29145769edc977375a373407824' && source deactivate"
 
 #################################################################################################################
 #           System CleanUp
