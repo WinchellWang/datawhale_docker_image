@@ -34,7 +34,7 @@ Build the image in the folder with the following command.
 docker build -t datawhale/lightgbm_pytorch_torchtext:12.3 .
 ```
 
-After build the image, creat the container.
+After build the image, create the container.
 
 ```bash
 docker run -itd \
