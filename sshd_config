@@ -30,7 +30,7 @@ Port 22
 # Authentication:
 
 #LoginGraceTime 2m
-PermitRootLogin without-password
+PermitRootLogin yes
 StrictModes no
 #MaxAuthTries 6
 #MaxSessions 10
