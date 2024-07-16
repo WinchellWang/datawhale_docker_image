@@ -54,7 +54,7 @@ Set the SSH config file with the following
 ```
 Host DataWhale
     HostName 0.0.0.0 # your docker server IP
-    User root # password is winchellwang
+    User root # default password is winchellwang for root user
     Port 1234 # same with the forward port in container deployment
     IdentityFile ~\.ssh\id_rsa # id_rsa should match your key in authorized_keys.
 ```
@@ -70,9 +70,9 @@ conda 24.3.0
 # conda environments:
 #
 base                  *  /opt/miniforge
-LightGBM                 /opt/miniforge/envs/LightGBM
-Pytorch                  /opt/miniforge/envs/Pytorch
-TorchText                /opt/miniforge/envs/TorchText
+LightGBM                 /opt/miniforge/envs/LightGBM # for machine learning course
+Pytorch                  /opt/miniforge/envs/Pytorch # for multimodality course (vision, audio, image)
+TorchText                /opt/miniforge/envs/TorchText # for natural language processing course
 ```
 
 LightGBM, Pytorch, and TorchText are already CUDA compatible.
