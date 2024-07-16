@@ -2,7 +2,27 @@ Dockfile containing LightGBM, Pytorch and TorchText with GPU Cuda acceleration
 
 # How to Use
 
-## Docker
+## Docker Image
+
+[datawhale/lightgbm_pytorch_torchtext:12.3](https://hub.docker.com/r/winchellwang/datawhalelearning)
+
+```bash
+docker pull winchellwang/datawhalelearning
+```
+
+```bash
+docker run -itd \
+    -e PUID=1000 -e PGID=1000 \
+    --gpus all \
+    --name=datawhale \
+    --restart=on-failure \
+    -v /your/work/folder/:/home \
+    -v /your/pub/key/id_rsa.pub:/root/.ssh/authorized_keys \
+    -p 1234:22 \
+    datawhale/lightgbm_pytorch_torchtext:12.3
+```
+
+## Docker Build
 
 Download all files in one folder.
 
