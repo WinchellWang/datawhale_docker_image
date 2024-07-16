@@ -70,14 +70,17 @@ RUN echo "export PATH=$CONDA_DIR/bin:"'$PATH' > /etc/profile.d/conda.sh && \
     /bin/bash ~/miniforge.sh -b -p $CONDA_DIR && \
     rm ~/miniforge.sh
 
-RUN /bin/bash -c "conda init"
 RUN /bin/bash -c "source .bashrc"
+
 RUN conda config --set always_yes yes --set changeps1 yes && \
     conda create -y -q -n LightGBM python=3.9.19 numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib && \
     conda create -y -q -n Pytorch python=3.9.19 pytorch torchvision torchaudio pytorch-cuda=12.1 numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib menpo moviepy librosa timm opencv ultralytics -c pytorch -c nvidia && \
     conda create -y -q -n TorchText python=3.9.19 pytorch torchvision torchaudio pytorch-cuda=12.1 torchtext=0.18 numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib jieba sacrebleu spacy cupy -c pytorch -c nvidia -c conda-forge
-RUN /bin/bash -c "conda activate TorchText"
+
+RUN /bin/bash -c "conda init && conda activate TorchText"
+
 RUN /bin/bash -c "python -m spacy download zh_core_web_sm && python -m spacy download en_core_web_sm"
+
 RUN /bin/bash -c "conda deactivate"
     
 #################################################################################################################
