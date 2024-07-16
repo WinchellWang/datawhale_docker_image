@@ -84,7 +84,10 @@ RUN /bin/bash -c "source .bashrc"
 RUN conda config --set always_yes yes --set changeps1 yes && \
     conda create -y -q -n LightGBM python=3.9.19 numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib && \
     conda create -y -q -n Pytorch python=3.9.19 pytorch torchvision torchaudio pytorch-cuda=12.1 numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib menpo moviepy librosa timm opencv ultralytics -c pytorch -c nvidia && \
-    conda create -y -q -n TorchText python=3.9.19 pytorch torchvision torchaudio pytorch-cuda=12.1 torchtext=0.18 numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib jieba sacrebleu -c pytorch -c nvidia
+    conda create -y -q -n TorchText python=3.9.19 pytorch torchvision torchaudio pytorch-cuda=12.1 torchtext=0.18 numpy scipy scikit-learn jupyter notebook ipython pandas matplotlib jieba sacrebleu spacy cupy -c pytorch -c nvidia -c conda-forge
+RUN /bin/bash -c "conda activate TorchText"
+RUN /bin/bash -c "python -m spacy download zh_core_web_sm && python -m spacy download en_core_web_sm"
+RUN /bin/bash -c "conda deactivate"
     
 #################################################################################################################
 #           LightGBM
@@ -99,26 +102,6 @@ RUN cd /usr/local/src && mkdir lightgbm && cd lightgbm && \
 ENV PATH /usr/local/src/lightgbm/LightGBM:${PATH}
 
 RUN /bin/bash -c "source activate LightGBM && cd /usr/local/src/lightgbm/LightGBM && sh ./build-python.sh install --precompile && source deactivate"
-
-#################################################################################################################
-#           JUPYTER
-#################################################################################################################
-
-# password: keras
-# password key: --NotebookApp.password='sha1:98b767162d34:8da1bc3c75a0f29145769edc977375a373407824'
-
-# Add a notebook profile.
-# RUN mkdir -p -m 700 ~/.jupyter/ && \
-#     echo "c.NotebookApp.ip = '*'" >> ~/.jupyter/jupyter_notebook_config.py
-
-# VOLUME /home
-# WORKDIR /home
-
-# IPython
-# EXPOSE 8888
-
-# ENTRYPOINT [ "/tini", "--" ]
-# CMD /bin/bash -c "source activate py3 && jupyter notebook --allow-root --no-browser --NotebookApp.password='sha1:98b767162d34:8da1bc3c75a0f29145769edc977375a373407824' && source deactivate"
 
 #################################################################################################################
 #           Install SSH
@@ -137,6 +120,23 @@ EXPOSE 22
 ENTRYPOINT service ssh start && bash
 
 WORKDIR /home
+
+#################################################################################################################
+#           JUPYTER
+#################################################################################################################
+
+# password: keras
+# password key: --NotebookApp.password='sha1:98b767162d34:8da1bc3c75a0f29145769edc977375a373407824'
+
+# Add a notebook profile.
+RUN mkdir -p -m 700 ~/.jupyter/ && \
+    echo "c.NotebookApp.ip = '*'" >> ~/.jupyter/jupyter_notebook_config.py
+
+# IPython
+EXPOSE 8888
+
+ENTRYPOINT [ "/tini", "--" ]
+CMD /bin/bash -c "source activate base && jupyter notebook --allow-root --no-browser --NotebookApp.password='sha1:98b767162d34:8da1bc3c75a0f29145769edc977375a373407824' && source deactivate"
 
 #################################################################################################################
 #           System CleanUp
