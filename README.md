@@ -4,7 +4,7 @@ Dockfile containing LightGBM, Pytorch and TorchText with GPU Cuda acceleration
 
 ## Docker Image
 
-[datawhale/lightgbm_pytorch_torchtext:12.3](https://hub.docker.com/r/winchellwang/datawhalelearning)
+[winchellwang/datawhalelearning:12.3.2](https://hub.docker.com/r/winchellwang/datawhalelearning)
 
 ```bash
 docker pull winchellwang/datawhalelearning
@@ -19,7 +19,7 @@ docker run -itd \
     -v /your/work/folder/:/home \
     -v /your/pub/key/id_rsa.pub:/root/.ssh/authorized_keys \
     -p 1234:22 \
-    datawhale/lightgbm_pytorch_torchtext:12.3
+    winchellwang/datawhalelearning:12.3.2
 ```
 
 ## Docker Build
@@ -31,7 +31,7 @@ Add your SSH key information to authorized_keys.
 Build the image in the folder with the following command.
 
 ```bash
-docker build -t datawhale/lightgbm_pytorch_torchtext:12.3 .
+docker build -t winchellwang/datawhalelearning:12.3.2 .
 ```
 
 After build the image, create the container.
@@ -44,7 +44,7 @@ docker run -itd \
     --restart=on-failure \
     -v /your/work/folder/:/home \
     -p 1234:22 \
-    datawhale/lightgbm_pytorch_torchtext:12.3
+    winchellwang/datawhalelearning:12.3.2
 ```
 
 ## Local Computer
